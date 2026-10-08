@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}
+Нова задача
+{% endblock %}
+
+{% block content %}
+
+<h1>Създай нова задача</h1>
+
+<form method="POST">
+
+    <div>
+        <label for="title">Заглавие:</label>
+        <br>
+
+        <input
+            type="text"
+            id="title"
+            name="title"
+            required
+        >
+    </div>
+
+    <br>
+
+    <div>
+        <label for="description">Описание:</label>
+        <br>
+
+        <textarea
+            id="description"
+            name="description"
+            rows="5"
+        ></textarea>
+    </div>
+
+    <br>
+
+    <button type="submit">
+        Създай задача
+    </button>
+
+</form>
+
+{% endblock %}

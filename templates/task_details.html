@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}
+Детайли за задача
+{% endblock %}
+
+{% block content %}
+
+<h1>{{ task.title }}</h1>
+
+<p>
+    <strong>Описание:</strong>
+</p>
+
+<p>
+    {{ task.description or "Няма описание." }}
+</p>
+
+<p>
+    <strong>Статус:</strong>
+    {{ task.status }}
+</p>
+
+<p>
+    <strong>Създадена на:</strong>
+    {{ task.created_at.strftime("%d.%m.%Y %H:%M") }}
+</p>
+
+<hr>
+
+<p>
+    <a href="{{ url_for('tasks.edit_task', task_id=task.id) }}">
+        Редактирай задачата
+    </a>
+</p>
+
+<form
+    method="POST"
+    action="{{ url_for('tasks.delete_task', task_id=task.id) }}"
+    onsubmit="return confirm('Сигурни ли сте, че искате да изтриете тази задача?');"
+>
+    <button type="submit">
+        Изтрий задачата
+    </button>
+</form>
+
+
+<p>
+    <a href="{{ url_for('tasks.list_tasks') }}">
+        ← Обратно към задачите
+    </a>
+</p>
+
+<p>
+    <a href="{{ url_for('ai.ai_assistant', task_id=task.id) }}">
+    🤖 Помощ от AI
+    </a>
+</p>
+
+
+{% endblock %}

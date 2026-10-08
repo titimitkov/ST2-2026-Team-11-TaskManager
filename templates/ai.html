@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block title %}
+AI Assistant
+{% endblock %}
+
+{% block content %}
+
+<h1>AI Assistant</h1>
+{% if task %}
+
+    <hr>
+
+    <h2>Помощ за задача:</h2>
+
+    <p>
+        <strong>{{ task.title }}</strong>
+    </p>
+
+    {% if task.description %}
+        <p>
+            {{ task.description }}
+        </p>
+    {% endif %}
+
+    <p>
+        Статус: {{ task.status }}
+    </p>
+
+{% endif %}
+<p>
+    Задай въпрос на локалния AI модел.
+</p>
+
+<form method="POST">
+
+    <div>
+        <label for="prompt">
+            Въпрос:
+        </label>
+
+        <br>
+
+        <textarea
+            id="prompt"
+            name="prompt"
+            rows="6"
+            cols="60"
+            placeholder="Например: Какво е Task Manager?"
+            required
+        >{{ prompt }}</textarea>
+    </div>
+
+    <br>
+
+    <button type="submit">
+        Попитай AI
+    </button>
+
+</form>
+
+{% if error %}
+
+    <p>
+        <strong>Грешка:</strong>
+        {{ error }}
+    </p>
+
+{% endif %}
+
+{% if answer %}
+
+    <hr>
+
+    <h2>Отговор от AI:</h2>
+
+    <p>
+        {{ answer }}
+    </p>
+
+{% endif %}
+
+{% endblock %}
